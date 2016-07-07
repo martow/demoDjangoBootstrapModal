@@ -1,0 +1,18 @@
+{% extends "modal-box-form.html" %}
+{% load bootstrap %}
+
+{% block title %}
+    Nieuwe <b>Locatie</b>
+{% endblock %}
+
+{% block content %}
+    {{ form|bootstrap }}
+{% endblock %}
+
+{% block footer %}
+     <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+     <input type="submit" class="btn btn-primary" value="Submit" />
+{% endblock %}
+
+
+

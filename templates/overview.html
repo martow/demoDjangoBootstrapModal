@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+</head>
+<body>
+    <div class="container">
+
+      <div class="starter-template">
+            <h1>Locaties</h1>
+            <a id="new-button" class="btn btn-success" href="#" role="button">Nieuw</a>
+
+          <table class="table">
+              <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Naam</th>
+                  <th>Type</th>
+                  <th>Toegevoegd op</th>
+              </tr>
+              </thead>
+              <tbody>
+                {% for location in locations %}
+                <tr>
+                    <th scope="row"><a href="" class="view-location btn" model-id="{{ location.id }}" >{{ location.id }}</a></th>
+                    <td>{{ location.name }}</td>
+                    <td>{{ location.type }}</td>
+                    <td>{{ location.created_timestamp }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+
+    </div><!-- /.container -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
+     <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+    <script>
+        $( "#new-button" ).click(function() {
+            $.get( "/locaties/nieuw", function( data ) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            });
+        });
+
+        $( ".view-location" ).click(function() {
+            event.preventDefault()
+            var href = $(event.target)[0];
+            console.log(id);
+            var id = href.getAttribute("model-id");
+            $.get( "/locaties/" + id, function( data ) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            });
+        });
+    </script>
+</body>
+</html>

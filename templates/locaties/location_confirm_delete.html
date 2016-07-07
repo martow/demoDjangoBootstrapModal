@@ -1,0 +1,15 @@
+{% extends "modal-box-form.html" %}
+{% load bootstrap %}
+
+{% block title %}
+    Bevestigen verwijderen
+{% endblock %}
+
+{% block content %}
+    Weet u zeker dat u {{ object.id }} - {{ object.name }} wilt verwijderen?
+{% endblock %}
+
+{% block footer %}
+     <button type="button" class="btn" data-dismiss="modal">Annuleer</button>
+     <input type="submit" class="btn btn-danger" value="Verwijder" />
+{% endblock %}

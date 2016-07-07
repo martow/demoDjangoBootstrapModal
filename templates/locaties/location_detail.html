@@ -1,0 +1,42 @@
+{% extends "modal-box.html" %}
+{% load bootstrap %}
+
+{% block title %}
+    Locatie <b>{{ object.id }}</b>
+{% endblock %}
+
+{% block content %}
+    {{ object.id }}</br>
+    {{ object.name }}</br>
+    {{ object.type }}</br>
+    {{ object.created_timestamp }}</br>
+    {{ object.notes }}
+{% endblock %}
+
+{% block footer %}
+    <button id="delete" type="button" class="btn btn-danger">Delete</button>
+    <button id="edit" type="button" class="btn btn-primary">Edit</button>
+    <button type="button" class="btn" data-dismiss="modal">Close</button>
+{% endblock %}
+
+{% block extra %}
+    <script>
+        $( "#edit" ).click(function() {
+            var link = '/locaties/{{ object.id }}/edit';
+            $.get( link, function( data ) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            });
+        });
+    </script>
+    <script>
+        $( "#delete" ).click(function() {
+            var link = '/locaties/{{ object.id }}/delete';
+            $.get( link, function( data ) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            });
+        });
+    </script>
+{% endblock %}
+
