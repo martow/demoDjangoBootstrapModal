@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <main></main>
 
 
     <!-- Latest compiled and minified CSS -->
@@ -42,7 +43,7 @@
     </div><!-- /.container -->
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> </div>
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -58,20 +59,19 @@
 
     <script>
         $( "#new-button" ).click(function() {
-            $.get( "/locaties/nieuw", function( data ) {
-                $('#myModal').html(data);
-                $('#myModal').modal('show');
+            $.get( "{% url 'new_location' %}", function( data ) {
+                $('#formModal').html(data);
+                $('#formModal').modal('show');
             });
         });
 
         $( ".view-location" ).click(function() {
             event.preventDefault()
             var href = $(event.target)[0];
-            console.log(id);
             var id = href.getAttribute("model-id");
             $.get( "/locaties/" + id, function( data ) {
-                $('#myModal').html(data);
-                $('#myModal').modal('show');
+                $('#formModal').html(data);
+                $('#formModal').modal('show');
             });
         });
     </script>

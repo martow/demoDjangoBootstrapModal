@@ -1,0 +1,24 @@
+{% extends "modal-box/modal-box.html" %}
+
+{% block form-start %}
+        <form enctype="multipart/form-data" action="{{ request.path }}" id="add" method="post">
+        {% csrf_token %}
+{% endblock %}
+
+{% block form-end %}
+    </form>
+{% endblock %}
+
+{% block extra %}
+    <script>
+            var form_options = { target: '#formModal', success: function(data) {
+                var regex = /<html\b[^>]*>([\s\S]*?)<\/html>/;
+                if (data.match(regex) != null) {
+                    document.open();
+                    document.write(data);
+                    document.close();
+                }
+            } };
+            $('#add').ajaxForm(form_options);
+    </script>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "modal-box.html" %}
+{% extends "modal-box/modal-box.html" %}
 {% load bootstrap %}
 
 {% block title %}
@@ -22,19 +22,19 @@
 {% block extra %}
     <script>
         $( "#edit" ).click(function() {
-            var link = '/locaties/{{ object.id }}/edit';
+            var link = '{% url 'edit_location' object.id %}';
             $.get( link, function( data ) {
-                $('#myModal').html(data);
-                $('#myModal').modal('show');
+                $('#formModal').html(data);
+                $('#formModal').modal('show');
             });
         });
     </script>
     <script>
         $( "#delete" ).click(function() {
-            var link = '/locaties/{{ object.id }}/delete';
+            var link = '{% url 'delete_location' object.id %}';
             $.get( link, function( data ) {
-                $('#myModal').html(data);
-                $('#myModal').modal('show');
+                $('#formModal').html(data);
+                $('#formModal').modal('show');
             });
         });
     </script>
